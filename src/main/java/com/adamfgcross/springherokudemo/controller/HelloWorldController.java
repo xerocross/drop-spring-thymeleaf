@@ -11,4 +11,8 @@ public class HelloWorldController {
     public ResponseEntity<String> getHello() {
         return ResponseEntity.ok("Hello World");
     }
+    @GetMapping("/secret")
+    public ResponseEntity<String> getSecret() {
+        return ResponseEntity.ok("Shhh. It's a secret!");
+    }
 }
