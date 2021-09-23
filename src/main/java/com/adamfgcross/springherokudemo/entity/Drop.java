@@ -3,6 +3,7 @@ package com.adamfgcross.springherokudemo.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "droplet")
 public class Drop {
 
     @Id

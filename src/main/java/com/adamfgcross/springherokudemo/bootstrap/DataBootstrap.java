@@ -22,39 +22,39 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        User adam = new User();
-        adam.setUsername("adam");
-        adam.setPassword("pw");
-        userRepository.save(adam);
-
-        User steve = new User();
-        steve.setUsername("steve");
-        steve.setPassword("pw");
-        userRepository.save(steve);
-
-        User sam = new User();
-        sam.setUsername("sam");
-        sam.setPassword("pw");
-        userRepository.save(sam);
-
-        Drop drop = new Drop();
-        drop.setText("test #apple");
-        drop.setUser(adam);
-        dropRepository.save(drop);
-
-        drop = new Drop();
-        drop.setText("test #pear");
-        drop.setUser(adam);
-        dropRepository.save(drop);
-
-        drop = new Drop();
-        drop.setText("test #pear #apple");
-        drop.setUser(adam);
-        dropRepository.save(drop);
-
-        drop = new Drop();
-        drop.setText("test #pear #pear");
-        drop.setUser(steve);
-        dropRepository.save(drop);
+//        User adam = new User();
+//        adam.setUsername("adam");
+//        adam.setPassword("pw");
+//        userRepository.save(adam);
+//
+//        User steve = new User();
+//        steve.setUsername("steve");
+//        steve.setPassword("pw");
+//        userRepository.save(steve);
+//
+//        User sam = new User();
+//        sam.setUsername("sam");
+//        sam.setPassword("pw");
+//        userRepository.save(sam);
+//
+//        Drop drop = new Drop();
+//        drop.setText("test #apple");
+//        drop.setUser(adam);
+//        dropRepository.save(drop);
+//
+//        drop = new Drop();
+//        drop.setText("test #pear");
+//        drop.setUser(adam);
+//        dropRepository.save(drop);
+//
+//        drop = new Drop();
+//        drop.setText("test #pear #apple");
+//        drop.setUser(adam);
+//        dropRepository.save(drop);
+//
+//        drop = new Drop();
+//        drop.setText("test #pear #pear");
+//        drop.setUser(steve);
+//        dropRepository.save(drop);
     }
 }
