@@ -9,6 +9,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
@@ -29,10 +31,17 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-        User adam = new User();
-        adam.setUsername(mainUsername);
-        adam.setPassword(mainPassword);
-        userRepository.save(adam);
+
+        Optional<User> adamOptional = userRepository.findByUsername("adam");
+        User adam;
+        if (!adamOptional.isPresent()) {
+            adam = new User();
+            adam.setUsername(mainUsername);
+            adam.setPassword(mainPassword);
+            userRepository.save(adam);
+        } else {
+            adam = adamOptional.get();
+        }
 
         Drop drop = new Drop();
         drop.setText("test #apple");
