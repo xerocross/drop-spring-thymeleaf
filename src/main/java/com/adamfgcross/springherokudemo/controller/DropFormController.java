@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
 import java.util.List;
@@ -35,17 +36,17 @@ public class DropFormController {
     }
 
     @PostMapping("/drop")
-    public String postDrop(Authentication authentication, @RequestParam(value = "dropText", defaultValue = "") String dropText, Model model) {
+    public String postDrop(Authentication authentication, @RequestParam(value = "dropText", defaultValue = "") String dropText, Model model, RedirectAttributes redirAttrs) {
         Optional<User> userOptional = getUser(authentication);
         System.out.println("received dropText" + dropText);
         if (!userOptional.isPresent()) {
-            model.addAttribute("errorText", "User not found in database");
+            redirAttrs.addFlashAttribute("errorText", "User not found in database");
         } else {
             User user = userOptional.get();
             dropService.saveDrop(dropText, user);
-            model.addAttribute("messageText", "Drop saved successfully");
+            redirAttrs.addFlashAttribute("messageText", "Drop saved successfully");
         }
-            return "drop-form";
+        return "redirect:/drop";
     }
 
     @GetMapping("drop")
