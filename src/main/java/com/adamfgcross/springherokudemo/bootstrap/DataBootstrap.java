@@ -43,19 +43,20 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
             adam = adamOptional.get();
         }
 
-        Drop drop = new Drop();
-        drop.setText("test #apple");
-        drop.setUser(adam);
-        dropRepository.save(drop);
+//        Drop drop = new Drop();
+//        drop.setText("test #apple");
+//        drop.setUser(adam);
+//        dropRepository.save(drop);
+//
+//        drop = new Drop();
+//        drop.setText("test #pear");
+//        drop.setUser(adam);
+//        dropRepository.save(drop);
+//
+//        drop = new Drop();
+//        drop.setText("test #pear #apple");
+//        drop.setUser(adam);
+//        dropRepository.save(drop);
 
-        drop = new Drop();
-        drop.setText("test #pear");
-        drop.setUser(adam);
-        dropRepository.save(drop);
-
-        drop = new Drop();
-        drop.setText("test #pear #apple");
-        drop.setUser(adam);
-        dropRepository.save(drop);
     }
 }
