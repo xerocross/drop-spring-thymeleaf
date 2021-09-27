@@ -2,9 +2,12 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Drops</title>
+    <title>Drop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<div class="container">
 <div th:replace="fragments.html :: header"></div>
 
 <div  th:if="${errorText != null}">
@@ -16,16 +19,16 @@
 
 <h2>Create New Drop Here</h2>
 <div><form action="/drop" method="POST">
-    <input type="text" name="dropText" />
-    <input type="submit"/>
+    <input class="form-label" type="text" name="dropText" />
+    <input class="btn btn-primary" type="submit"/>
 </form>
 </div>
 
 <h2>Query Drops Here</h2>
 <div>
 <form action="/drop" method="GET">
-    <input type="text" name="query" />
-    <input type="submit"/>
+    <input class="form-label" type="text" name="query" />
+    <input class="btn btn-primary" type="submit"/>
 </form>
 </div>
 
@@ -36,5 +39,6 @@
     </p>
 </div>
 <div th:replace="fragments.html :: footer"></div>
+</div>
 </body>
 </html>

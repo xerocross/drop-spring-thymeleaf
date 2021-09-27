@@ -2,36 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Drop App</title>
+    <title>Drop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
+<div class="container">
     <div th:replace="fragments.html :: header"></div>
-    <p>This is an app created by Adam Cross mainly for practice learning Spring boot and related technologies.</p>
+        <p>This is an app created by Adam Cross mainly for practice learning Spring boot and related technologies.</p>
 
-    <h2>What does it do?</h2>
-    <p>
-        You can store random bits of text data and easily tag them by subject using #hashtags.
-        The query feature allows you to easily search all of your existing notes
-        by hashtag.
-    </p>
-    <h2>
-        So the entire purpose of this app is just to store and retrieve bits of text data?
-    </h2>
-    <p>
-        Yes. It's worth noting how querying works though. If you query your notes for "#apple #pear" then
-        it will return only the notes with both the #apple and the #pear hashtags.
-    </p>
-    <h2>I noticed an error when I did [X].</h2>
-    <p>
-        This is a one-man project made for practice. I will keep polishing it as a learning
-        exercise, but I will probably never complete it to the standards of a production
-        application.
-    </p>
-    <h2>I forgot my password.</h2>
-    <p>
-        Sorry. There is no recovery feature.
-    </p>
+        <h2>What does it do?</h2>
+        <p>
+            You can store random bits of text data and easily tag them by subject using #hashtags.
+            The query feature allows you to easily search all of your existing notes
+            by hashtag.
+        </p>
+        <h2>
+            So the entire purpose of this app is just to store and retrieve bits of text data?
+        </h2>
+        <p>
+            Yes. It's worth noting how querying works though. If you query your notes for "#apple #pear" then
+            it will return only the notes with both the #apple and the #pear hashtags.
+        </p>
+        <h2>I noticed an error when I did [X].</h2>
+        <p>
+            This is a one-man project made for practice. I will keep polishing it as a learning
+            exercise, but I will probably never complete it to the standards of a production
+            application.
+        </p>
+        <h2>I forgot my password.</h2>
+        <p>
+            Sorry. There is no recovery feature.
+        </p>
 
-    <div th:replace="fragments.html :: footer"></div>
+        <div th:replace="fragments.html :: footer"></div>
+    </div>
 </body>
 </html>
