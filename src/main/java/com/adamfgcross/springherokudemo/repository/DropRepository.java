@@ -14,4 +14,6 @@ public interface DropRepository extends CrudRepository<Drop, Long> {
 
     List<Drop> findByUser_Id(Long userId);
 
+    List<Drop> findByTextContainsAndUser_Id(String text, Long userId);
+
 }

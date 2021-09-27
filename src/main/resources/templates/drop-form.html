@@ -3,42 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <title>Drop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <style>
+        textarea .main {
+            width: 100%;
+            background-color: red;
+        }
+
+    </style>
+
 </head>
 <body>
 <div class="container">
-<div th:replace="fragments.html :: header"></div>
 
-<div  th:if="${errorText != null}">
-    <span th:text="${errorText}" >Here is an error</span>
-</div>
-<div  th:if="${messageText != null}">
-    <span th:text="${messageText}" >Here is a message</span>
-</div>
+    <div th:replace="fragments.html :: header"></div>
 
-<h2>Create New Drop Here</h2>
-<div><form action="/drop" method="POST">
-    <input class="form-label" type="text" name="dropText" />
-    <input class="btn btn-primary" type="submit"/>
-</form>
-</div>
+    <div th:if="${errorText != null}" class="alert alert-danger" role="alert">
+        <span th:text="${errorText}">Here is an error</span>
+    </div>
+    <div th:if="${messageText != null}" class="alert alert-info" role="alert">
+        <span th:text="${messageText}">Here is a message</span>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Save New Data Here</h2>
+            <div>
+                <form action="/drop" method="POST">
 
-<h2>Query Drops Here</h2>
-<div>
-<form action="/drop" method="GET">
-    <input class="form-label" type="text" name="query" />
-    <input class="btn btn-primary" type="submit"/>
-</form>
-</div>
+                    <p><textarea name="dropText" class="form-control"></textarea></p>
+                    <p><input class="btn btn-primary main" type="submit" value="save"/></p>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h2>Find Saved Data Here</h2>
+            <div>
+                <form action="/drop" method="GET">
+                    <p><input class="form-control" type="text" name="query" /></p>
+                    <p>
+                        <input class="btn btn-primary" type="submit" value="search"/>
+                    </p>
+                </form>
+            </div>
 
-<div th:if="${drops != null}">
-    <p><em>The results of your query:</em></p>
-    <p  th:each="drop: ${drops}">
-        <span th:text="${drop.text}" >Here is some drop text</span>
-    </p>
-</div>
-<div th:replace="fragments.html :: footer"></div>
+            <div th:if="${drops != null}">
+                <p><em>The results of your query:</em></p>
+                <p th:each="drop: ${drops}">
+                    <span th:text="${drop.text}">Here is some drop text</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div th:replace="fragments.html :: footer"></div>
 </div>
 </body>
 </html>

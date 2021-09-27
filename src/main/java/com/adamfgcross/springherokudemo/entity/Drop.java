@@ -55,4 +55,19 @@ public class Drop {
                 ", user=" + user +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Drop drop = (Drop) o;
+
+        return id.equals(drop.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
 }
