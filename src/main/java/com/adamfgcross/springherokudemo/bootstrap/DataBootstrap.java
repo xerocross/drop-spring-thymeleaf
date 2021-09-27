@@ -4,6 +4,7 @@ import com.adamfgcross.springherokudemo.entity.Drop;
 import com.adamfgcross.springherokudemo.entity.User;
 import com.adamfgcross.springherokudemo.repository.DropRepository;
 import com.adamfgcross.springherokudemo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
@@ -15,6 +16,12 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
     private final UserRepository userRepository;
     private final DropRepository dropRepository;
 
+
+    @Value("${app.config.mainuser.username}")
+    private String mainUsername;
+    @Value("${app.config.mainuser.password}")
+    private String mainPassword;
+
     public DataBootstrap(UserRepository userRepository, DropRepository dropRepository) {
         this.userRepository = userRepository;
         this.dropRepository = dropRepository;
@@ -23,19 +30,9 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         User adam = new User();
-        adam.setUsername("adam");
-        adam.setPassword("pw");
+        adam.setUsername(mainUsername);
+        adam.setPassword(mainPassword);
         userRepository.save(adam);
-
-        User steve = new User();
-        steve.setUsername("steve");
-        steve.setPassword("pw");
-        userRepository.save(steve);
-
-        User sam = new User();
-        sam.setUsername("sam");
-        sam.setPassword("pw");
-        userRepository.save(sam);
 
         Drop drop = new Drop();
         drop.setText("test #apple");
@@ -50,11 +47,6 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         drop = new Drop();
         drop.setText("test #pear #apple");
         drop.setUser(adam);
-        dropRepository.save(drop);
-
-        drop = new Drop();
-        drop.setText("test #pear #pear");
-        drop.setUser(steve);
         dropRepository.save(drop);
     }
 }
