@@ -4,6 +4,9 @@ package com.adamfgcross.springherokudemo.controller;
 import com.adamfgcross.springherokudemo.entity.User;
 import com.adamfgcross.springherokudemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,14 +24,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+
     @GetMapping("register")
     public String getRegistrationForm( User user, Model model) {
         return "registration-form";
     }
 
     @PostMapping("register")
-    public String register(@Valid User user, BindingResult bindingResult, Model model) {
-
+    public String register(Authentication authentication, @Valid User user, BindingResult bindingResult, Model model) {
+        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+        SecurityContextHolder.clearContext();
         if (bindingResult.hasErrors()) {
             System.out.println("Errors:");
             System.out.println(bindingResult.getAllErrors());
