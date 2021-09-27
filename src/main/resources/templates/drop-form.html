@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Drops</title>
+</head>
+<body>
+<div th:replace="fragments.html :: header"></div>
+
+<div  th:if="${errorText != null}">
+    <span th:text="${errorText}" >Here is an error</span>
+</div>
+<div  th:if="${messageText != null}">
+    <span th:text="${messageText}" >Here is a message</span>
+</div>
+
+<h2>Create New Drop Here</h2>
+<div><form action="/drop" method="POST">
+    <input type="text" name="dropText" />
+    <input type="submit"/>
+</form>
+</div>
+
+<h2>Query Drops Here</h2>
+<div>
+<form action="/drop" method="GET">
+    <input type="text" name="query" />
+    <input type="submit"/>
+</form>
+</div>
+
+<div th:if="${drops != null}">
+    <p><em>The results of your query:</em></p>
+    <p  th:each="drop: ${drops}">
+        <span th:text="${drop.text}" >Here is some drop text</span>
+    </p>
+</div>
+<div th:replace="fragments.html :: footer"></div>
+</body>
+</html>

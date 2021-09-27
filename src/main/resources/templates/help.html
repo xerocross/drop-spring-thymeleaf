@@ -5,8 +5,14 @@
     <title>Drop App</title>
 </head>
 <body>
-    <h1>Drop App</h1>
+    <div th:replace="fragments.html :: header"></div>
     <p>This is an app created by Adam Cross mainly for practice learning Spring boot and related technologies.</p>
+
+
+    <h2>GUI Frontend</h2>
+    <h3><a href="dropText">dropText</a></h3>
+    <h3><a href="query">query</a></h3>
+    <h3><a href="register">register</a></h3>
 
     <h2>POST '/drop'</h2>
     <p>
@@ -37,10 +43,10 @@
     <p>Here's some some I'd like to do but which I haven't done yet.</p>
     <div>
         <ul>
-            <li>support new user registration and login</li>
             <li>support editing and deleting notes</li>
             <li>create nice GUI for interacting with these endpoints</li>
         </ul>
     </div>
+    <div th:replace="fragments.html :: footer"></div>
 </body>
 </html>

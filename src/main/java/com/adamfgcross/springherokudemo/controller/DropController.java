@@ -31,34 +31,34 @@ public class DropController {
         this.userService = userService;
     }
 
-    @PostMapping("/drop")
-    public ResponseEntity<String> postDrop(Authentication authentication, @RequestParam(value = "dropText", defaultValue = "") String dropText) {
-        Optional<User> userOptional = getUser(authentication);
-        System.out.println("received dropText" + dropText);
-        if (!userOptional.isPresent()) {
-            throw new RuntimeException("user not found in database");
-        } else {
-            User user = userOptional.get();
-            dropService.saveDrop(dropText, user);
-            return ResponseEntity.ok("Saved");
-        }
-    }
+//    @PostMapping("/drop")
+//    public ResponseEntity<String> postDrop(Authentication authentication, @RequestParam(value = "dropText", defaultValue = "") String dropText) {
+//        Optional<User> userOptional = getUser(authentication);
+//        System.out.println("received dropText" + dropText);
+//        if (!userOptional.isPresent()) {
+//            throw new RuntimeException("user not found in database");
+//        } else {
+//            User user = userOptional.get();
+//            dropService.saveDrop(dropText, user);
+//            return ResponseEntity.ok("Saved");
+//        }
+//    }
 
-
-    private  Optional<User> getUser(Authentication authentication) {
-        String username = authentication.getName();
-        return userService.findByUsername(username);
-    }
-
-    @GetMapping("/drops")
-    public ResponseEntity<List<Drop>> queryDrops(Authentication authentication, @RequestParam(value = "query", defaultValue = "") String query) {
-        Optional<User> userOptional = getUser(authentication);
-        if (userOptional.isPresent()) {
-            Long id = userOptional.get().getId();
-            List<Drop> drops = queryService.queryDrops(query, id);
-            return ResponseEntity.ok(drops);
-        } else {
-            return ResponseEntity.ok(Collections.emptyList());
-        }
-    }
+//
+//    private  Optional<User> getUser(Authentication authentication) {
+//        String username = authentication.getName();
+//        return userService.findByUsername(username);
+//    }
+//
+//    @GetMapping("/drops")
+//    public ResponseEntity<List<Drop>> queryDrops(Authentication authentication, @RequestParam(value = "query", defaultValue = "") String query) {
+//        Optional<User> userOptional = getUser(authentication);
+//        if (userOptional.isPresent()) {
+//            Long id = userOptional.get().getId();
+//            List<Drop> drops = queryService.queryDrops(query, id);
+//            return ResponseEntity.ok(drops);
+//        } else {
+//            return ResponseEntity.ok(Collections.emptyList());
+//        }
+//    }
 }

@@ -3,6 +3,9 @@ package com.adamfgcross.springherokudemo.entity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,9 +15,12 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotEmpty
     private String username;
 
     @JsonIgnore
+    @NotNull
     private String password;
 
     @JsonBackReference

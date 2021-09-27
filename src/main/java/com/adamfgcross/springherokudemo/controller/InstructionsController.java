@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class InstructionsController {
 
-    @GetMapping("/")
+    @GetMapping("/help")
     public String instructions(Model model) {
-        return "hello";
+        return "help";
     }
 
 }

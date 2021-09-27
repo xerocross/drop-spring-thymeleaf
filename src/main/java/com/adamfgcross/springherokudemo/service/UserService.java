@@ -10,4 +10,6 @@ public interface UserService {
     public Boolean checkUser(String username, String password);
 
     public Optional<User> findByUsername(String username);
+
+    public void save(User user);
 }
