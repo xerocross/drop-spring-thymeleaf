@@ -19,11 +19,4 @@ public class HelloWorldController {
     public ResponseEntity<String> getSecret() {
         return ResponseEntity.ok("Shhh. It's a secret!");
     }
-    @GetMapping("/")
-    public ResponseEntity<String> getBaseGreeting() {
-        return ResponseEntity.ok(configHello);
-    }
-
-
-
 }

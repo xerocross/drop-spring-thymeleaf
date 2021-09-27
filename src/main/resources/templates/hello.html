@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Drop App</title>
+</head>
+<body>
+    <h1>Drop App</h1>
+    <p>This is an app created by Adam Cross mainly for practice learning Spring boot and related technologies.</p>
+
+    <h2>POST '/drop'</h2>
+    <p>
+        Post text to the /drop endpoint using the query parameter 'dropText'. We call these bits of text data "drops".
+        Text can include #hashtags.
+        These hashtags are used in the internal business logic for querying drops.
+    </p>
+
+    <h2>GET '/drops'</h2>
+    <h3>query</h3>
+    <p>
+        Pass in the 'query' parameter to get a list of drops. The query string can be any string, but the real
+        magic lies in how Drops handles hashtags in the query string. If your query string contains a hashtag, like
+        #apple, then Drop will return the drops that have that hashtag. It will do that for as many hashtags as you
+        include in your string. Thus querying "#apple #pear" will return all of the drops containing both '#apple'
+        and '#pear'. When querying, string that is not part of a hashtag will be ignored.
+    </p>
+
+    <h2>
+        Authentication
+    </h2>
+    <p>
+        Right now the app is secured using Spring security, and I did that for practice. The username
+        and password are just adam/pw. Feel free to play with the app.
+    </p>
+
+    <h2>Not Yet Done</h2>
+    <p>Here's some some I'd like to do but which I haven't done yet.</p>
+    <div>
+        <ul>
+            <li>support new user registration and login</li>
+            <li>support editing and deleting notes</li>
+            <li>create nice GUI for interacting with these endpoints</li>
+        </ul>
+    </div>
+</body>
+</html>
