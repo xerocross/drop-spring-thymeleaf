@@ -36,6 +36,14 @@
         <p>
             Sorry. There is no recovery feature.
         </p>
+        <h3>How secure is this app?</h3>
+        <p>
+            Drop should not be used for confidential information. Your notes and password are stored in the database as plain text.
+             Anyone with access to the database can read
+            all of the information. That said, the authentication/authorization mechanism is standard Spring Security. I did not
+            attempt to roll my own authentication system. Thus, so long as you choose a good password, it should hold up against
+            casual hacking attempts.
+        </p>
 
         <div><a href="/">home</a></div>
         <div th:replace="fragments.html :: footer"></div>
