@@ -27,6 +27,10 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public void populateInitialDropsForNewUser(User user) {
+
+    }
+
     @Override
     public Optional<User> findByUsername(String username) {
         return userRepository.findByUsername(username);

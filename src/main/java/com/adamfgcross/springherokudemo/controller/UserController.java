@@ -25,6 +25,11 @@ public class UserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @GetMapping("/login")
+    public String viewLoginPage(User user) {
+        return "login";
+    }
+
     @GetMapping("register")
     public String getRegistrationForm( User user, Model model) {
         return "registration-form";

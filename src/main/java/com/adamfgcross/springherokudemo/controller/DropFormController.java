@@ -33,7 +33,7 @@ public class DropFormController {
 
     @GetMapping("/")
     public String helloWorld() {
-        return "helloworld";
+        return "redirect:/drop";
     }
 
     @PostMapping("/drop")
