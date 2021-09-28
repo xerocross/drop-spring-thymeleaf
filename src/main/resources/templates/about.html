@@ -39,14 +39,6 @@
             exercise, but I will probably never complete it to the standards of a production
             application.
         </p>
-        <h3>I forgot my password.</h3>
-        <p>
-            Sorry. There is no recovery feature yet.
-        </p>
-        <h3>Can I change my password?</h3>
-        <p>
-            Not yet.
-        </p>
         <h3>How secure is this app?</h3>
         <p>
             Drop should not be used for confidential information. Your notes and password are stored in the database as plain text.
@@ -57,7 +49,12 @@
         <p>
             I do not recommend using this app to store passwords.
         </p>
-
+        <h3>To-Do</h3>
+        <ul>
+            <li>support for changing user password</li>
+            <li>support for password recovery</li>
+            <li>encrypt entries for storage in the database</li>
+        </ul>
         <div><a href="/">home</a></div>
         <div th:replace="fragments.html :: footer"></div>
     </div>
