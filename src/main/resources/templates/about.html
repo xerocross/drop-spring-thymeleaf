@@ -10,14 +10,16 @@
 <div class="container">
     <div th:replace="fragments.html :: header"></div>
 
-        <h2>Help</h2>
+        <h2>About</h2>
         <p>This is an app created by Adam Cross mainly for practice learning Spring boot and related technologies.</p>
 
-        <h3>What does it do?</h3>
+        <p>This app is built on Spring boot. It uses Thymeleaf templates, and it uses Spring Security. It is hosted
+        on Heroku using a MySQL database to persist user data.</p>
+
+        <h3>What does the app do?</h3>
         <p>
-            You can store random bits of text data and easily tag them by subject using #hashtags.
-            The query feature allows you to easily search all of your existing notes
-            by hashtag.
+            You can store bits of text data and easily tag them by subject using #hashtags.
+            The query feature allows you to easily search all of your existing notes to find them again later.
         </p>
         <h3>
             So the entire purpose of this app is just to store and retrieve bits of text data?
@@ -25,6 +27,11 @@
         <p>
             Yes. It's worth noting how querying works though. If you query your notes for "#apple #pear" then
             it will return only the notes with both the #apple and the #pear hashtags.
+        </p>
+        <p>
+            After some user feedback, we have made search by hashtag optional. If your search query includes a
+            hashtag, then Drop will use hashtag search. Otherwise, it will revert to a simpler form of search
+            based on simple string containment.
         </p>
         <h3>I noticed an error when I did [X].</h3>
         <p>
@@ -34,15 +41,21 @@
         </p>
         <h3>I forgot my password.</h3>
         <p>
-            Sorry. There is no recovery feature.
+            Sorry. There is no recovery feature yet.
+        </p>
+        <h3>Can I change my password?</h3>
+        <p>
+            Not yet.
         </p>
         <h3>How secure is this app?</h3>
         <p>
             Drop should not be used for confidential information. Your notes and password are stored in the database as plain text.
              Anyone with access to the database can read
-            all of the information. That said, the authentication/authorization mechanism is standard Spring Security. I did not
-            attempt to roll my own authentication system. Thus, so long as you choose a good password, it should hold up against
-            casual hacking attempts.
+            all of the information. That said, the security should hold up against casual hacking attempts by unauthorized users,
+            depending on the quality of your password.
+        </p>
+        <p>
+            I do not recommend using this app to store passwords.
         </p>
 
         <div><a href="/">home</a></div>

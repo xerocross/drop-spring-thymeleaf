@@ -5,11 +5,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class InstructionsController {
+public class HelpController {
 
-    @GetMapping("/help")
+    @GetMapping("/about")
     public String instructions(Model model) {
-        return "help";
+        return "about";
     }
 
 }

@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 
 @Component
 public class HashTagSearch {
-
-
     public List<String> getHashTags(String inputText) {
         List<String> results = new ArrayList<>();
         String regexp = "(?<=[\\s>]|^)#(\\w*[A-Za-z_]+\\w*)\\b(?!;)";
