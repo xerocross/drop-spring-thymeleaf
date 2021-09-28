@@ -1,6 +1,7 @@
 package com.adamfgcross.springherokudemo.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "droplet")
@@ -9,8 +10,10 @@ public class Drop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String text;
 
+    @Size(max=255, message="text is too long")
+    @Size(min=1, message="text is too short")
+    private String text;
 
     @ManyToOne()
     @JoinColumn(name = "user_id")

@@ -11,9 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +37,14 @@ public class DropFormController {
     }
 
     @PostMapping("/drop")
-    public String postDrop(Authentication authentication, @RequestParam(value = "dropText", defaultValue = "") String dropText, Model model, RedirectAttributes redirAttrs) {
+    public String postDrop2(Authentication authentication, @Valid Drop drop, BindingResult bindingResult, Model model, RedirectAttributes redirAttrs) {
+        if (bindingResult.hasErrors()) {
+            System.out.println("Errors:");
+            System.out.println(bindingResult.getAllErrors());
+            return "drop-form";
+        }
+
+        String dropText = drop.getText();
         Optional<User> userOptional = getUser(authentication);
         System.out.println("received dropText" + dropText);
         if (!userOptional.isPresent()) {
@@ -58,7 +67,7 @@ public class DropFormController {
     }
 
     @GetMapping("drop")
-    public String getDropsView(Authentication authentication, @RequestParam(value = "query", defaultValue = "") String query, Model model) {
+    public String getDropsView(Authentication authentication, Drop drop, @RequestParam(value = "query", defaultValue = "") String query, Model model) {
         Optional<User> userOptional = getUser(authentication);
         List<Drop> drops;
         if (userOptional.isPresent()) {

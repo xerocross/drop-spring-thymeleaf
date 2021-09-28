@@ -43,17 +43,24 @@
     <div th:if="${messageText != null}" class="alert alert-info" role="alert">
         <span th:text="${messageText}">Here is a message</span>
     </div>
+    <p>Save short bits of text and easily find them again later, like sending Tweets to yourself.</p>
     <div class="row">
         <div class="col-md-6">
             <h2>Save New Data Here</h2>
             <div>
-                <form action="/drop" method="POST">
+                <form action="/drop" th:action="@{/drop}" method="POST" th:object="${drop}">
 
-                    <p><textarea name="dropText" class="form-control"></textarea></p>
+                    <p><textarea class="form-control" th:field="*{text}"></textarea>
+                        <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</span>
+                    </p>
                     <p><input class="btn btn-primary main" type="submit" value="save"/></p>
                 </form>
             </div>
+
+
         </div>
+
+
         <div class="col-md-6">
             <h2>Find Saved Data Here</h2>
             <div>
@@ -66,9 +73,9 @@
             </div>
 
             <div th:if="${drops != null}">
-                <p><em>The results of your query:</em></p>
+                <p><em>Top results from your query:</em></p>
                 <p th:each="drop: ${drops}">
-                    <span th:text="${drop.id}">ID</span> : <span th:text="${drop.text}">Here is some drop text</span>
+                    <span th:text="${drop.text}">Here is some drop text</span>
                     <span ><a href="#" th:onclick="'deleteById('+${drop.id}+');'">delete</a></span>
                 </p>
             </div>
