@@ -6,6 +6,7 @@ import com.adamfgcross.springherokudemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,6 +22,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping("register")
     public String getRegistrationForm( User user, Model model) {
@@ -42,6 +45,8 @@ public class UserController {
             return "registration-form";
         } else {
             User newUser = user;
+            // encode password
+            newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
             try {
                 userService.save(newUser);
                 return "redirect:/drop";

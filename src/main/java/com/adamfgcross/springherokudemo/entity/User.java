@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,7 @@ public class User {
 
     @JsonIgnore
     @NotNull
+    @Size(min=5, message="password must be at least 5 characters")
     private String password;
 
     @JsonBackReference
