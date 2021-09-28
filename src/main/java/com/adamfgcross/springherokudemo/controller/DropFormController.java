@@ -6,13 +6,12 @@ import com.adamfgcross.springherokudemo.service.DropService;
 import com.adamfgcross.springherokudemo.service.QueryService;
 import com.adamfgcross.springherokudemo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.Collections;
@@ -49,6 +48,15 @@ public class DropFormController {
         return "redirect:/drop";
     }
 
+    @DeleteMapping("/drop/{id}")
+    public ResponseEntity<Long> deleteDrop(@PathVariable Long id) {
+        if (dropService.removeDrop(id)) {
+            return ResponseEntity.ok(id);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("drop")
     public String getDropsView(Authentication authentication, @RequestParam(value = "query", defaultValue = "") String query, Model model) {
         Optional<User> userOptional = getUser(authentication);
@@ -60,6 +68,7 @@ public class DropFormController {
             drops = Collections.emptyList();
         }
         model.addAttribute("drops", drops);
+        model.addAttribute("query", query);
         return "drop-form";
     }
 

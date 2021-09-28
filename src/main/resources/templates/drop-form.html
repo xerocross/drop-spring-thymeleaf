@@ -15,6 +15,22 @@
 
     </style>
 
+    <script>
+        function deleteById(id) {
+            if (confirm("Really delete note " + id + "?")){
+                axios({
+                    method: 'delete',
+                    url: '/drop/' + id
+                })
+                .then(function(response) {
+                    location.reload();
+                })
+                .catch(function(){
+                    alert("An unexpected error occurred.");
+                })
+            }
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -42,7 +58,7 @@
             <h2>Find Saved Data Here</h2>
             <div>
                 <form action="/drop" method="GET">
-                    <p><input class="form-control" type="text" name="query" /></p>
+                    <p><input class="form-control" type="text" name="query" th:value="${query}" /></p>
                     <p>
                         <input class="btn btn-primary" type="submit" value="search"/>
                     </p>
@@ -52,7 +68,8 @@
             <div th:if="${drops != null}">
                 <p><em>The results of your query:</em></p>
                 <p th:each="drop: ${drops}">
-                    <span th:text="${drop.text}">Here is some drop text</span>
+                    <span th:text="${drop.id}">ID</span> : <span th:text="${drop.text}">Here is some drop text</span>
+                    <span ><a href="#" th:onclick="'deleteById('+${drop.id}+');'">delete</a></span>
                 </p>
             </div>
         </div>
@@ -61,5 +78,6 @@
     <div><a href="/">home</a> | <a href="/logout">log out</a></div>
     <div th:replace="fragments.html :: footer"></div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>

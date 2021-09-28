@@ -16,5 +16,7 @@ public interface DropService {
 
     public List<Drop> getAllDrops(Long userId);
 
+    public Boolean removeDrop(Long dropId);
+
     public List<Drop> getAllDrops();
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DropServiceImpl implements DropService {
@@ -55,6 +56,22 @@ public class DropServiceImpl implements DropService {
             drops.add(drop);
         }
         return drops;
+    }
+
+    @Override
+    public Boolean removeDrop(Long dropId) {
+        Optional<Drop> dropOptional = dropRepository.findById(dropId);
+        if (dropOptional.isPresent()) {
+            try {
+                dropRepository.delete(dropOptional.get());
+                return true;
+            }
+            catch (Exception e) {
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 
     @Override
