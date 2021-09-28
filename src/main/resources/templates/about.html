@@ -41,13 +41,17 @@
         </p>
         <h3>How secure is this app?</h3>
         <p>
-            Drop should not be used for confidential information. Your notes and password are stored in the database as plain text.
+            Drop should not be used for confidential information. Your notes are stored in the database as plain text.
              Anyone with access to the database can read
-            all of the information. That said, the security should hold up against casual hacking attempts by unauthorized users,
-            depending on the quality of your password.
+            your notes. However, your password is stored as a cryptographic hash. The security should hold up against casual hacking
+            attempts by unauthorized users, depending on the quality of your password. As of this writing, we do not require
+            users to use strong passwords.
         </p>
         <p>
-            I do not recommend using this app to store passwords.
+            I do not recommend using this app to <em>store</em> passwords since anyone with access to the database can read them.
+        </p>
+        <p>
+            I hope this app might still find some use in the domain of personal information that is not highly confidential.
         </p>
         <h3>To-Do</h3>
         <ul>
