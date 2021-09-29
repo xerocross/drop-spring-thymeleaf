@@ -11,6 +11,8 @@ public interface DropService {
 
     public void saveDrop(String dropText, User user);
 
+    public Boolean save (Drop drop);
+
     public List<Drop> getDrops(String dropText, String username);
 
     public List<Drop> queryDrops(String query, String username);
@@ -22,4 +24,6 @@ public interface DropService {
     public Optional<Drop> findById(Long id);
 
     public List<Drop> getAllDrops();
+
+    public Boolean updateDrop(Drop drop, User user) throws Exception;
 }

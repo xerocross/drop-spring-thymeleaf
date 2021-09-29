@@ -3,6 +3,8 @@ package com.adamfgcross.springherokudemo.service;
 
 import com.adamfgcross.springherokudemo.entity.Drop;
 import com.adamfgcross.springherokudemo.entity.User;
+import com.adamfgcross.springherokudemo.exception.BadRequestException;
+import com.adamfgcross.springherokudemo.exception.ForbiddenRequestException;
 import com.adamfgcross.springherokudemo.repository.DropRepository;
 import com.adamfgcross.springherokudemo.repository.UserRepository;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,11 @@ public class DropServiceImpl implements DropService {
     @Override
     public void saveDrop(Drop drop) {
         dropRepository.save(drop);
+    }
+
+    @Override
+    public Boolean save (Drop drop) {
+        return drop.equals(dropRepository.save(drop));
     }
 
     @Override
@@ -61,6 +68,33 @@ public class DropServiceImpl implements DropService {
             drops.add(drop);
         }
         return drops;
+    }
+
+    public Boolean updateDrop(Drop drop, User user) throws Exception {
+        // check if post is an update
+        Boolean isUpdate = false;
+        if (drop.getId() != null) {
+            isUpdate = true;
+        }
+        if (isUpdate) {
+            Long dropId = drop.getId();
+            Long userId = user.getId();
+            Optional<Drop> existingDrop = findById(dropId);
+            if (!existingDrop.isPresent()) {
+                throw new BadRequestException();
+            } else {
+                if (existingDrop.get().getUser().getId().equals(userId)) {
+                    // user is authorized
+                    drop.setUser(user);
+                    return save(drop);
+                } else {
+                    throw new ForbiddenRequestException();
+                }
+            }
+        } else {
+            drop.setUser(user);
+            return save(drop);
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.adamfgcross.springherokudemo.controller;
 
 import com.adamfgcross.springherokudemo.entity.Drop;
 import com.adamfgcross.springherokudemo.entity.User;
+import com.adamfgcross.springherokudemo.exception.BadRequestException;
 import com.adamfgcross.springherokudemo.service.DropService;
 import com.adamfgcross.springherokudemo.service.QueryService;
 import com.adamfgcross.springherokudemo.service.UserService;
@@ -26,10 +27,6 @@ public class DropFormController {
 
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
     public static class ResourceNotFoundException extends RuntimeException {
-    }
-
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-    public static class BadRequestException extends RuntimeException {
     }
 
     @Autowired
