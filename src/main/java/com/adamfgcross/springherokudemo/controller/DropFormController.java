@@ -36,6 +36,21 @@ public class DropFormController {
         return "redirect:/drop";
     }
 
+    @GetMapping("/drop/{id}")
+    public String getDrop(@PathVariable Long id, Model model) {
+        Optional<Drop> dropOptional = dropService.findById(id);
+        Drop drop;
+        if (dropOptional.isPresent()) {
+            drop = dropOptional.get();
+            model.addAttribute("update",true);
+
+        } else {
+            throw new RuntimeException("could not find drop");
+        }
+        model.addAttribute("drop", drop);
+        return "drop-form";
+    }
+
     @PostMapping("/drop")
     public String postDrop2(Authentication authentication, @Valid Drop drop, BindingResult bindingResult, Model model, RedirectAttributes redirAttrs) {
         if (bindingResult.hasErrors()) {
@@ -51,7 +66,9 @@ public class DropFormController {
             redirAttrs.addFlashAttribute("errorText", "User not found in database");
         } else {
             User user = userOptional.get();
-            dropService.saveDrop(dropText, user);
+            drop.setUser(user);
+            dropService.saveDrop(drop);
+            //dropService.saveDrop(dropText, user);
             redirAttrs.addFlashAttribute("messageText", "Drop saved successfully");
         }
         return "redirect:/drop";

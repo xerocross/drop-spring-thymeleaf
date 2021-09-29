@@ -22,6 +22,11 @@ public class DropServiceImpl implements DropService {
     }
 
     @Override
+    public Optional<Drop> findById(Long id) {
+        return dropRepository.findById(id);
+    }
+
+    @Override
     public void saveDrop(Drop drop) {
         dropRepository.save(drop);
     }

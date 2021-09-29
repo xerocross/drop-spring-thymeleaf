@@ -19,7 +19,7 @@
                     location.reload();
                 })
                 .catch(function(){
-                    alert("An unexpected error occurred.");
+                    alert("An unexpected error occurred while trying to delete the note.");
                 })
             }
         }
@@ -42,11 +42,13 @@
             <h2>Save New Data Here</h2>
             <div>
                 <form action="/drop" th:action="@{/drop}" method="POST" th:object="${drop}">
-
+                    <input type="hidden" th:field="*{id}">
                     <p><textarea class="form-control" th:field="*{text}"></textarea>
                         <span th:if="${#fields.hasErrors('text')}" th:errors="*{text}">Text Error</span>
                     </p>
-                    <p><input class="btn btn-primary main" type="submit" value="save"/></p>
+                    <p><input class="btn btn-primary" type="submit" value="save"/>
+                        <a href="/drop" class="btn btn-primary" th:if="${update != null}">cancel</a>
+                    </p>
                 </form>
             </div>
 
@@ -69,7 +71,8 @@
                 <p><em>Top results from your query:</em></p>
                 <p th:each="drop: ${drops}">
                     <span th:text="${drop.text}">Here is some drop text</span>
-                    <span ><a href="#" th:onclick="'deleteById('+${drop.id}+');'">delete</a></span>
+                    <span ><a th:href="'drop/'+${drop.id}">edit</a></span>
+                    <span ><a href="" th:onclick="'deleteById('+${drop.id}+');return false;'">delete</a></span>
                 </p>
             </div>
         </div>

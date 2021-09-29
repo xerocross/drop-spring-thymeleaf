@@ -4,6 +4,7 @@ import com.adamfgcross.springherokudemo.entity.Drop;
 import com.adamfgcross.springherokudemo.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface DropService {
     public void saveDrop(Drop drop);
@@ -17,6 +18,8 @@ public interface DropService {
     public List<Drop> getAllDrops(Long userId);
 
     public Boolean removeDrop(Long dropId);
+
+    public Optional<Drop> findById(Long id);
 
     public List<Drop> getAllDrops();
 }
