@@ -28,6 +28,10 @@ public class DropFormController {
     public static class ResourceNotFoundException extends RuntimeException {
     }
 
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    public static class BadRequestException extends RuntimeException {
+    }
+
     @Autowired
     private DropService dropService;
     @Autowired
@@ -83,9 +87,7 @@ public class DropFormController {
                 Long userId = user.getId();
                 Optional<Drop> existingDrop = dropService.findById(dropId);
                 if (!existingDrop.isPresent()) {
-                    // this should never happen
-                    redirAttrs.addFlashAttribute("errorText", "Could not find existing drop data.");
-                    return "redirect:/drop";
+                    throw new BadRequestException();
                 } else {
                     if (existingDrop.get().getUser().getId().equals(userId)) {
                         // user is authorized
