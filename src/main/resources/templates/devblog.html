@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Drop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+    <div th:replace="fragments.html :: header"></div>
+
+    <h2>Development Blog</h2>
+
+    <h3>Sept 30, 2021</h3>
+
+    <p>
+        This app is in what you might call an "alpha" state. Basic functionality is there, but
+        I am still performing code cleanup, refactoring for clarity, and adding automated testing.
+        Even so, the source code for better or worse is available at
+        <a href="https://github.com/xerocross/drop-spring-thymeleaf">https://github.com/xerocross/drop-spring-thymeleaf</a>.
+
+    </p>
+    <p>
+        I still have to learn how to perform unit testing on a web layer with Spring Security in place. Ideally
+        I would also program a suite of automated integration tests and end-to-end tests.
+    </p>
+
+
+
+    <div><a href="/">home</a></div>
+    <div th:replace="fragments.html :: footer"></div>
+</div>
+</body>
+</html>

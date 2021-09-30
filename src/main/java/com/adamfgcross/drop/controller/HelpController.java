@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HelpController {
 
     @GetMapping("/about")
-    public String instructions(Model model) {
+    public String getAbout(Model model) {
         return "about";
+    }
+
+    @GetMapping("/dev")
+    public String getDev(Model model) {
+        return "devblog";
     }
 
 }
