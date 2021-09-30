@@ -36,6 +36,8 @@ public class UserControllerTest {
                 .contentType(MediaType.ALL))
                 .andExpect(status().isOk());
 
+
+
     }
 
     @Test
@@ -43,6 +45,13 @@ public class UserControllerTest {
         mvc.perform(get("/login")
                 .contentType(MediaType.ALL))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void cantGetUnauthorized() throws Exception {
+        mvc.perform(get("/nonsense")
+                .contentType(MediaType.ALL))
+                .andExpect(status().isUnauthorized());
     }
 
 }

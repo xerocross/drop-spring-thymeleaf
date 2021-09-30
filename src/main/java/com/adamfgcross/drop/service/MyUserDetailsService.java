@@ -19,10 +19,10 @@ public class MyUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        Optional<User> userOptional =  userRepository.findByUsername(s);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<User> userOptional =  userRepository.findByUsername(username);
         if (!userOptional.isPresent()) {
-            throw new UsernameNotFoundException(s);
+            throw new UsernameNotFoundException(username);
         } else {
             User myUser = userOptional.get();
             return new MyUserPrincipal(myUser);

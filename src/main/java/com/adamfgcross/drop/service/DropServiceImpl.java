@@ -29,46 +29,12 @@ public class DropServiceImpl implements DropService {
     }
 
     @Override
-    public void saveDrop(Drop drop) {
-        dropRepository.save(drop);
-    }
-
-    @Override
     public Boolean save (Drop drop) {
         return drop.equals(dropRepository.save(drop));
     }
 
-    @Override
-    public void saveDrop(String dropText, User user) {
-        Drop drop = new Drop();
-        drop.setText(dropText);
-        drop.setUser(user);
-        dropRepository.save(drop);
-    }
 
-    @Override
-    public List<Drop> getDrops(String query, String username) {
-        List<Drop> drops = dropRepository.findByTextContains(query);
-        return drops;
-    }
 
-    @Override
-    public List<Drop> getAllDrops(Long userId) {
-        List<Drop> drops = new ArrayList<>();
-        for (Drop drop : dropRepository.findByUser_Id(userId)) {
-            drops.add(drop);
-        }
-        return drops;
-    }
-
-    @Override
-    public List<Drop> getAllDrops() {
-        List<Drop> drops = new ArrayList<>();
-        for (Drop drop : dropRepository.findAll()) {
-            drops.add(drop);
-        }
-        return drops;
-    }
 
     public Boolean updateDrop(Drop drop, User user) {
         // check if post is an update
@@ -97,21 +63,7 @@ public class DropServiceImpl implements DropService {
         }
     }
 
-    @Override
-    public Boolean removeDrop(Long dropId) {
-        Optional<Drop> dropOptional = dropRepository.findById(dropId);
-        if (dropOptional.isPresent()) {
-            try {
-                dropRepository.delete(dropOptional.get());
-                return true;
-            }
-            catch (Exception e) {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
+
 
     private Boolean isDropBelongsToUser(Drop drop, User user) {
         Long dropId = drop.getId();
@@ -143,14 +95,5 @@ public class DropServiceImpl implements DropService {
                 return false;
             }
         }
-    }
-
-
-    @Override
-    public List<Drop> queryDrops(String query, String username) {
-
-
-
-        return null;
     }
 }
