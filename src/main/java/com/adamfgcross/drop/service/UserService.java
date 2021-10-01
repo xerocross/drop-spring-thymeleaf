@@ -10,6 +10,5 @@ public interface UserService {
     Optional<User> findByUsername(String username);
 
     void save(User user);
-
-    User attemptSaveNewUser(User newUser);
+    User attemptCreateNewUser(User newUser);
 }

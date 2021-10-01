@@ -1,5 +1,6 @@
 package com.adamfgcross.drop.service;
 
+import com.adamfgcross.drop.bootstrap.BootstrapDrops;
 import com.adamfgcross.drop.entity.User;
 import com.adamfgcross.drop.exception.UserAlreadyExistsException;
 import com.adamfgcross.drop.repository.UserRepository;
@@ -14,15 +15,27 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final BootstrapDrops bootstrapDrops;
+    private final DropService dropService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository,
+                           PasswordEncoder passwordEncoder,
+                           BootstrapDrops bootstrapDrops,
+                           DropService dropService
+
+    ) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.bootstrapDrops = bootstrapDrops;
+        this.dropService = dropService;
     }
 
-    public void populateInitialDropsForNewUser(User user) {
-
+    void populateInitialDropsForNewUser(User user) {
+        bootstrapDrops.getDrops().forEach(drop-> {
+            drop.setUser(user);
+            dropService.updateDrop(drop, user);
+        });
     }
 
     @Override
@@ -42,7 +55,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User attemptSaveNewUser(User newUser) {
+    public User attemptCreateNewUser(User newUser) {
+        User user = attemptSaveNewUser(newUser);
+        if (user != null) {
+            populateInitialDropsForNewUser(user);
+        }
+        return user;
+    }
+
+    User attemptSaveNewUser(User newUser) {
         Optional<User> foundUserOptional = findByUsername(newUser.getUsername());
         foundUserOptional.ifPresent((user) -> {
             throw new UserAlreadyExistsException();

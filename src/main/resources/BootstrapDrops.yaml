@@ -1,0 +1,9 @@
+drops :
+  - text : "This is an example drop. You may freely delete these starter drops."
+  - text : "#tip Drops are just bits of text that you want to save for future reference."
+  - text : "#John's #birthday May 9"
+  - text : "#tip Drops can be tagged with keywords using #hashtags. When you search for two or more hashtags, Drop will find only those drops containing all of them."
+  - text : "#tip Searching by hashtag offers the advantage of searching the whole word whereas ordinary search will return any drop containing your search query."
+  - text : "#tip Tagging and Searching using hashtags is optional, but we believe it offers a powerful way to organize information for future retrieval."
+  - text : "#tip The maximum length of a drop is 255 characters. Drop is intended for collecting small bits of data. Thus, one drop should contain one piece of data. This will help with finding your data later."
+  - text : "#tip The results of your search are presented in no particular order, but you will only receive a small number of query results. Thus you should write search queries that clearly narrow down the results to just what you are looking for."

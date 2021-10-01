@@ -43,7 +43,7 @@ public class UserController {
             return "registration-form";
         }
         try {
-            userService.attemptSaveNewUser(user);
+            userService.attemptCreateNewUser(user);
             return "redirect:/drop";
         } catch (UserAlreadyExistsException e) {
             model.addAttribute("errorText", "User already exists; try again.");
