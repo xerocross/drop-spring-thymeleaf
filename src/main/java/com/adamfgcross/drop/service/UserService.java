@@ -7,9 +7,9 @@ import java.util.Optional;
 
 public interface UserService {
 
-    public Boolean checkUser(String username, String password);
+    Optional<User> findByUsername(String username);
 
-    public Optional<User> findByUsername(String username);
+    void save(User user);
 
-    public void save(User user);
+    User attemptSaveNewUser(User newUser);
 }
